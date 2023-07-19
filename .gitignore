@@ -1,3 +1,5 @@
 .evn
 node_modules
-.txt*
+.txt
+createTable.txt
+rmigrations.txt
