@@ -3,7 +3,7 @@ import { AppDataSource } from "../../data-source";
 import { Users } from "../../entities/user";
 import { AppError } from "../../error/handleError";
 
-export const deleteUserService = async (idUser: number): Promise<void> => {
+export const deleteUserService = async (idUser: string): Promise<void> => {
     const getRepositoryUser: Repository<Users> =
         AppDataSource.getRepository(Users);
 

@@ -19,7 +19,7 @@ export const veriFyTokenIsValid = async (
         }
         req.user = decoded;
         req.user = {
-            id: parseInt(decoded.sub),
+            id: decoded.sub,
             isAdmin: decoded.isAdmin,
         };
     });
