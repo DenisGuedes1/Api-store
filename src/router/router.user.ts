@@ -13,6 +13,7 @@ import {
     resetPasswordController,
     sendEmailResetPasswordController,
 } from "../controlleer/user/sendReseteEmailPassword";
+import { createdAddresController } from "../controlleer/user/address/createdAdress.controller";
 
 const userRouter: Router = Router();
 
@@ -27,6 +28,8 @@ userRouter.post(
     validateDataMiddleware(loginUserSchema),
     loginUserController
 );
+
+userRouter.post("/user/addres", veriFyTokenIsValid, createdAddresController);
 userRouter.post("/users/reset-password", sendEmailResetPasswordController);
 userRouter.get("/list-users", getAllUserController);
 userRouter.delete("/users/delete", veriFyTokenIsValid, deleteUserController);

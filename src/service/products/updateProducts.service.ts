@@ -1,4 +1,4 @@
-import { Products } from "../../entities/products";
+import { Products } from "../../entities/products.entities";
 import { AppDataSource } from "../../data-source";
 import {
     TreturnCreatedProducts,

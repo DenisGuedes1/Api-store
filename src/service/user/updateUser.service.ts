@@ -1,5 +1,5 @@
 import { AppDataSource } from "../../data-source";
-import { Users } from "../../entities/user";
+import { Users } from "../../entities/user.entities";
 import { Repository } from "typeorm";
 import { UpdatedUserSchema, createdUserSchema } from "../../schema/schema.user";
 import { AppError } from "../../error/handleError";

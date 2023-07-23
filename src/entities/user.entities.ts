@@ -1,4 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    JoinColumn,
+    OneToOne,
+} from "typeorm";
+import { Adresses } from "./address.entities";
 
 @Entity()
 export class Users {
@@ -16,7 +23,7 @@ export class Users {
 
     @Column({ nullable: true })
     avatar: string;
-    //'uuid_generate_v4()'
+
     @Column()
     isAdmin: Boolean;
 
@@ -25,4 +32,10 @@ export class Users {
         nullable: true,
     })
     reset_token: string | null;
+    @OneToOne(() => Adresses, (adress) => adress.user, {
+        cascade: true,
+        nullable: true,
+    })
+    @JoinColumn()
+    adress: Adresses;
 }

@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { AppDataSource } from "../../data-source";
-import { Users } from "../../entities/user";
+import { Users } from "../../entities/user.entities";
 import { AppError } from "../../error/handleError";
 import { emailService } from "../../utils/sendResetEmail.utils";
 import { hashSync } from "bcryptjs";

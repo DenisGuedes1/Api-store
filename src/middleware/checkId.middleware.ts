@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { AppDataSource } from "../data-source";
-import { Products } from "../entities/products";
+import { Products } from "../entities/products.entities";
 
 export const checkProductIdMiddleware = async (
     req: Request,

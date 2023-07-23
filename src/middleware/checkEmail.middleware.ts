@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { AppDataSource } from "../data-source";
-import { Users } from "../entities/user";
+import { Users } from "../entities/user.entities";
 import { AppError } from "../error/handleError";
 
 export const checkEmailMiddle = async (
