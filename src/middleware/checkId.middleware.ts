@@ -7,9 +7,9 @@ export const checkProductIdMiddleware = async (
     res: Response,
     next: NextFunction
 ) => {
-    const productId = Number(req.params.id);
+    const productId = req.params.id;
 
-    if (isNaN(productId)) {
+    if (productId) {
         return res.status(400).json({ message: "ID not found." });
     }
 

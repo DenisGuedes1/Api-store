@@ -37,7 +37,7 @@ export const createdProducts = z.object({
 });
 
 export const returnCreatedProucts = createdProducts.extend({
-    id: z.number(),
+    id: z.string(),
 });
 export const updateProductsSchema = z
     .object({

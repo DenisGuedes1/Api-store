@@ -9,7 +9,7 @@ import { Repository } from "typeorm";
 import { updateProductsSchema } from "../../schema/schema.products";
 export const updateProductsService = async (
     productsData: Partial<TreturnCreatedProducts>,
-    idProducts: number
+    idProducts: string
 ) => {
     const productsRepository: Repository<Products> =
         AppDataSource.getRepository(Products);

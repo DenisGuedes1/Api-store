@@ -15,3 +15,45 @@ CREATE TABLE fotos ( id SERIAL PRIMARY KEY,
                                                                                            foto4 BYTEA NULL,
                     FOREIGN KEY (produto_id) REFERENCES produtos(id));
 
+--------------------------------------------------------
+import { getRepository } from "typeorm";
+import { Carrinho } from "./src/entities/Carrinho";
+import { Usuario } from "./src/entities/Usuario";
+import { Produto } from "./src/entities/Produto";
+
+// ... (seu código anterior)
+
+async function criarCarrinho() {
+  try {
+    // Suponha que você já tenha as informações do usuário e do produto, ou os IDs associados a eles
+    const usuarioId = 1; // ID do usuário
+    const produtoId = 1; // ID do produto
+
+    // Carregue o repositório para cada entidade
+    const carrinhoRepository = getRepository(Carrinho);
+    const usuarioRepository = getRepository(Usuario);
+    const produtoRepository = getRepository(Produto);
+
+    // Obtenha as instâncias do usuário e do produto a partir de seus IDs
+    const usuario = await usuarioRepository.findOne(usuarioId);
+    const produto = await produtoRepository.findOne(produtoId);
+
+    // Crie uma instância da entidade Carrinho e associe o usuário e o produto a ela
+    const carrinho = new Carrinho();
+    carrinho.usuario = usuario;
+    carrinho.produto = produto;
+    carrinho.quantidade = 1;
+    carrinho.preco = 19.99;
+
+    // Salve o carrinho no banco de dados
+    await carrinhoRepository.save(carrinho);
+
+    console.log("Carrinho salvo com sucesso!");
+  } catch (error) {
+    console.error("Erro ao salvar carrinho:", error.message);
+  }
+}
+
+criarCarrinho();
+
+---------------------------------------------------------

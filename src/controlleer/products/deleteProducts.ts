@@ -5,7 +5,7 @@ export const deleteProductByIdController = async (
     req: Request,
     resp: Response
 ) => {
-    const idProduct = +req.params.id;
+    const idProduct = req.params.id;
 
     await deleteProductByIdService(idProduct);
 

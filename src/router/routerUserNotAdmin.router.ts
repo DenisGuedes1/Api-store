@@ -14,6 +14,8 @@ import { updatedUserController } from "../controlleer/user/updateUser.controller
 import { createdAddresController } from "../controlleer/user/address/createdAdress.controller";
 import { updatedAddresController } from "../controlleer/user/address/updatedAddres.controller";
 import { getuserByIdController } from "../controlleer/user/getUserForId.controller";
+import { createdCartController } from "../controlleer/bag/cart.controller";
+import { cartSchema } from "../schema/bag/schema.cart";
 
 const NotAdminRouter: Router = Router();
 
@@ -43,4 +45,10 @@ NotAdminRouter.delete(
 );
 NotAdminRouter.patch("/update-user", veriFyTokenIsValid, updatedUserController);
 NotAdminRouter.patch("/reset-password/:token", resetPasswordController);
+NotAdminRouter.post(
+    "/car/:id",
+    veriFyTokenIsValid,
+    validateDataMiddleware(cartSchema),
+    createdCartController
+);
 export default NotAdminRouter;

@@ -39,7 +39,4 @@ export const resetPasswordService = async (
         { id: findUser.id },
         { password: hashedPassword, reset_token: null }
     );
-
-    //     { id: findUser.id },
-    // { password: hashedPassword, reset_token: null }
 };

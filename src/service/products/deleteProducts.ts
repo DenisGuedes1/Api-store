@@ -4,7 +4,7 @@ import { Products } from "../../entities/products.entities";
 import { AppError } from "../../error/handleError";
 
 export const deleteProductByIdService = async (
-    idProduct: number
+    idProduct: string
 ): Promise<void> => {
     const productsRepository: Repository<Products> =
         AppDataSource.getRepository(Products);
