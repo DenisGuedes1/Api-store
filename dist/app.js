@@ -1,0 +1,22 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+require("express-async-errors");
+const handleError_1 = require("./error/handleError");
+const routerProducts_1 = __importDefault(require("./router/routerProducts"));
+const cors_1 = __importDefault(require("cors"));
+const router_user_1 = __importDefault(require("./router/router.user"));
+const getProductsNotProtection_1 = __importDefault(require("./router/getProductsNotProtection"));
+const routerUserNotAdmin_router_1 = __importDefault(require("./router/routerUserNotAdmin.router"));
+const app = (0, express_1.default)();
+app.use(express_1.default.json());
+app.use("/admin/products/", routerProducts_1.default);
+app.use("/admin", router_user_1.default);
+app.use("/products", getProductsNotProtection_1.default);
+app.use("/store", routerUserNotAdmin_router_1.default);
+app.use(handleError_1.handlreErrors);
+app.use((0, cors_1.default)());
+exports.default = app;
