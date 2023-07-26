@@ -16,6 +16,8 @@ import { updatedAddresController } from "../controlleer/user/address/updatedAddr
 import { getuserByIdController } from "../controlleer/user/getUserForId.controller";
 import { createdCartController } from "../controlleer/bag/cart.controller";
 import { cartSchema } from "../schema/bag/schema.cart";
+import { removeCartController } from "../controlleer/bag/removeCart.controller";
+import { getProductsByUserController } from "../controlleer/bag/getCart.controller";
 
 const NotAdminRouter: Router = Router();
 
@@ -51,4 +53,6 @@ NotAdminRouter.post(
     validateDataMiddleware(cartSchema),
     createdCartController
 );
+NotAdminRouter.get("/car/", veriFyTokenIsValid, getProductsByUserController);
+NotAdminRouter.delete("/car/:id", veriFyTokenIsValid, removeCartController);
 export default NotAdminRouter;

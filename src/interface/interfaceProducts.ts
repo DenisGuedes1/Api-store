@@ -35,3 +35,10 @@ export interface IemailRequest {
     subject: string;
     text: string;
 }
+export interface IcartUser {
+    id: string;
+    name: string;
+    foto: string;
+    price: number;
+    quantity: number;
+}

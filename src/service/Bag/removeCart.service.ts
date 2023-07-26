@@ -5,12 +5,7 @@ import { Users } from "../../entities/user.entities";
 import { Products } from "../../entities/products.entities";
 import { AppError } from "../../error/handleError";
 
-export const createdCartService = async (
-    UserId: string,
-    idProducts: string,
-    quantity: number,
-    price: number
-) => {
+export const removeCartService = async (UserId: string, idProducts: string) => {
     const cartRepository: Repository<Cart> = AppDataSource.getRepository(Cart);
     const userRepository: Repository<Users> =
         AppDataSource.getRepository(Users);
@@ -23,28 +18,26 @@ export const createdCartService = async (
         },
     });
 
-    const products = await productRepository.findOne({
+    const product = await productRepository.findOne({
         where: {
             id: idProducts,
         },
     });
 
-    if (!user || !products) {
+    if (!user || !product) {
         throw new AppError("user or not products not found", 404);
     }
 
-    const totalPrice = quantity * price;
+    const cartItem = await cartRepository.findOne({
+        where: {
+            user: { id: UserId },
+            product: { id: idProducts },
+        },
+    });
 
-    const newItem = new Cart();
-    newItem.user = user;
-    newItem.product = products;
-    newItem.price = price;
-    newItem.quantity = quantity;
-    const saveNewItem = await cartRepository.save(newItem);
-    return {
-        price: products.price,
-        foto: products.foto1,
-        id: newItem.id,
-        quantity: newItem.quantity,
-    };
+    if (!cartItem) {
+        throw new AppError("product not found", 404);
+    }
+
+    await cartRepository.remove(cartItem);
 };
