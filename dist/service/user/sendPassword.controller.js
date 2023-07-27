@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.resetPasswordService = exports.sendResetPassword = void 0;
-const node_crypto_1 = require("node:crypto");
+const crypto_1 = require("crypto");
 const data_source_1 = require("../../data-source");
 const user_entities_1 = require("../../entities/user.entities");
 const handleError_1 = require("../../error/handleError");
@@ -22,7 +22,7 @@ const sendResetPassword = (email) => __awaiter(void 0, void 0, void 0, function*
     if (!find) {
         throw new handleError_1.AppError("user not found", 404);
     }
-    const resetToken = (0, node_crypto_1.randomUUID)();
+    const resetToken = (0, crypto_1.randomUUID)();
     yield userRepository.update({ email }, { reset_token: resetToken });
     const resetPasswordTemplate = sendResetEmail_utils_1.emailService.resetPasswordTemplate(find.name, email, resetToken);
     yield sendResetEmail_utils_1.emailService.sendEmail(resetPasswordTemplate);

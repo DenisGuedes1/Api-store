@@ -1,4 +1,4 @@
-import { randomUUID } from "node:crypto";
+import { randomUUID } from "crypto";
 import { AppDataSource } from "../../data-source";
 import { Users } from "../../entities/user.entities";
 import { AppError } from "../../error/handleError";
