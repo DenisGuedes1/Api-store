@@ -15,5 +15,9 @@ app.use("/admin", userRouter);
 app.use("/products", userNotLogin);
 app.use("/store", NotAdminRouter);
 app.use(handlreErrors);
-app.use(cors());
+app.use(
+    cors({
+        origin: true,
+    })
+);
 export default app;
