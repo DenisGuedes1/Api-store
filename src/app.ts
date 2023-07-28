@@ -10,11 +10,6 @@ import NotAdminRouter from "./router/routerUserNotAdmin.router";
 const app: Application = express();
 app.use(express.json());
 
-app.use("/admin/products/", productsRouter);
-app.use("/admin", userRouter);
-app.use("/products", userNotLogin);
-app.use("/store", NotAdminRouter);
-app.use(handlreErrors);
 app.use(
     cors({
         origin: true,
@@ -25,4 +20,9 @@ app.use(
         origin: "http://localhost:5173",
     })
 );
+app.use("/admin/products/", productsRouter);
+app.use("/admin", userRouter);
+app.use("/products", userNotLogin);
+app.use("/store", NotAdminRouter);
+app.use(handlreErrors);
 export default app;
