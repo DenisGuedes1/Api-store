@@ -20,4 +20,9 @@ app.use(
         origin: true,
     })
 );
+app.use(
+    cors({
+        origin: "http://localhost:5173",
+    })
+);
 export default app;
