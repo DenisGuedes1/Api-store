@@ -14,12 +14,13 @@ import {
     sendEmailResetPasswordController,
 } from "../controlleer/user/sendReseteEmailPassword";
 import { createdAddresController } from "../controlleer/user/address/createdAdress.controller";
-
+import { upload } from "../multer-config";
 const userRouter: Router = Router();
 
 userRouter.post(
     "/register",
     checkEmailMiddle,
+    upload.single("avatar"),
     validateDataMiddleware(createdUserSchema),
     createdUserController
 );

@@ -1,10 +1,15 @@
 import { Request, Response } from "express";
 import { createdUserService } from "../../service/user/createdUser.service";
-
+import { upload } from "../../multer-config";
 export const createdUserController = async (req: Request, resp: Response) => {
     const data = req.body;
-    console.log(data);
+    const avatarFileName = req.file ? req.file.filename : null;
+
+    console.log(req.file, "req.file");
+    data.avatar = avatarFileName;
+    console.log(data.avatar, "data.avatar");
+
     const newUser = await createdUserService(data);
-    console.log(newUser, "newUser");
-    return resp.json(newUser).status(201);
+
+    return resp.status(201).json(newUser);
 };
