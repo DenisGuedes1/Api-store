@@ -18,6 +18,7 @@ import { createdCartController } from "../controlleer/bag/cart.controller";
 import { cartSchema } from "../schema/bag/schema.cart";
 import { removeCartController } from "../controlleer/bag/removeCart.controller";
 import { getProductsByUserController } from "../controlleer/bag/getCart.controller";
+import { upload } from "../multer-config";
 
 const NotAdminRouter: Router = Router();
 
@@ -31,6 +32,7 @@ NotAdminRouter.post("/addres", veriFyTokenIsValid, createdAddresController);
 NotAdminRouter.post(
     "/register",
     checkEmailMiddle,
+    upload.single("avatar"),
     validateDataMiddleware(createdUserSchema),
     createdUserController
 );
