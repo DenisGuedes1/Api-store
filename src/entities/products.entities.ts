@@ -47,7 +47,7 @@ export class Products {
         ],
         default: "Não definido",
     })
-    caterogy: string;
+    category: string;
 
     @Column({
         type: "enum",
